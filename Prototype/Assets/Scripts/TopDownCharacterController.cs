@@ -5,10 +5,12 @@ public class TopDownCharacterController : MonoBehaviour {
 
 	float mPlayerRotation;
 	static float mMaxSpeed;
-	Vector2 velo;
+	Vector2 baseVelo;
 	enum WeaponModes: int{sword, gun}
 	int numOfWeaponModes =2;
-	WeaponModes currentWeapon;
+	static WeaponModes currentWeapon;
+	static float baseAttackStrength = 1;
+
 
 	public static float noise = 2.0f;
 
@@ -17,37 +19,45 @@ public class TopDownCharacterController : MonoBehaviour {
 	void Start () {
 		mPlayerRotation= 0;
 		mMaxSpeed = 20;
-		velo = Vector2.zero;
+		baseVelo = Vector2.zero;
 		currentWeapon = WeaponModes.sword;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		Control();
 		Move();
 		Weapons();
 	}
 
 
 
-	void Move(){
-		velo = Vector2.zero;
+	void Control(){
+		baseVelo = Vector2.zero;
 		if (Input.GetKey(KeyCode.W)){
-			velo.y+=1;
+			baseVelo.y+=1;
 		}
 		if (Input.GetKey(KeyCode.A)){
-			velo.x-=1;
+			baseVelo.x-=1;
 		}
 		if (Input.GetKey(KeyCode.S)){
-			velo.y-=1;
+			baseVelo.y-=1;
 		}
 		if (Input.GetKey(KeyCode.D)){
-			velo.x+=1;
+			baseVelo.x+=1;
 		}
-		velo.Normalize();
-		velo *= mMaxSpeed* Time.deltaTime;
-		gameObject.transform.position+= new Vector3(velo.x, 0, velo.y);
+		baseVelo.Normalize();
+	}
+
+	void Move(){
+		Vector3 vec3From2 = new Vector3(getEffectiveVelo().x, 0, getEffectiveVelo().y);
+		gameObject.transform.position+= vec3From2;
 		// rotate based on orientation of velo
-		if (velo != Vector2.zero)transform.rotation = Quaternion.LookRotation(new Vector3(velo.x, 0, velo.y));
+		if (vec3From2 != Vector3.zero)transform.rotation = Quaternion.LookRotation(vec3From2);
+	}
+
+	public Vector2 getEffectiveVelo(){
+		return baseVelo * mMaxSpeed* Time.deltaTime; // Insert modifier list here if need be
 	}
 
 	public GameObject swordPrefab;
@@ -100,5 +110,22 @@ public class TopDownCharacterController : MonoBehaviour {
 	{
 		mMaxSpeed = newSpeed;
 	}
+
+	public static void SetBaseAttackStrength(float newStrength)
+	{
+		baseAttackStrength = newStrength;
+	}
+
+	public static float GetEffectiveAttackStrength()
+	{
+		float outVal = baseAttackStrength;
+		if(currentWeapon == WeaponModes.gun){
+			outVal-=0.5f;
+		}else if(currentWeapon == WeaponModes.sword){
+			outVal+=2;
+		}
+		return outVal;
+	}
+
 
 }

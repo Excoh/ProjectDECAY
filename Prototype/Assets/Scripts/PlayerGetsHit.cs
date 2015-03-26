@@ -8,14 +8,14 @@ public class PlayerGetsHit : MonoBehaviour {
 	float hurtStateTime;
 	float hurtStateTimeRemaining;
 	public MeshRenderer MRtoMessWith;
-	static float damageAmount;
+	static float damageRatio;
 
 	// Use this for initialization
 	void Start () {
 		hurt = false;
 		lifeRemaining = 5f;
 		hurtStateTime = 2;
-		damageAmount = 1f;
+		damageRatio = 1f;
 		hurtStateTimeRemaining = hurtStateTime;
 	}
 	
@@ -26,9 +26,9 @@ public class PlayerGetsHit : MonoBehaviour {
 		}
 	}
 
-	public static void SetDamage(float newDamage)
+	public static void SetDamageRatio(float newDamageRatio)
 	{
-		damageAmount = newDamage;
+		damageRatio = newDamageRatio;
 	}
 
 //NEED TO HAVE A CATCH FOR GOING OVER MAX LIFE
@@ -38,18 +38,24 @@ public class PlayerGetsHit : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider collider) {
-
-			if(!hurt && (collider.gameObject.tag =="enemy" || collider.gameObject.tag =="enemyCrow" || collider.gameObject.tag == "carnivore")){
-			if(collider.gameObject.tag =="enemy") lifeRemaining-=1;
-			if(collider.gameObject.tag =="enemyCrow") lifeRemaining-=0.5f;
-			if(collider.gameObject.tag == "carnivore") lifeRemaining-=01.0f;
+		if(!hurt && (collider.gameObject.tag =="enemy" || collider.gameObject.tag =="enemyCrow" || collider.gameObject.tag == "carnivore")){
+			float damageDealt = effectiveDamageTabulation(collider);
+			lifeRemaining-= damageDealt;
 			if(lifeRemaining<=0){
 				Debug.Log("YOU DIED");
 				Destroy(this.gameObject);
 			}
-			startHurtState();
+		startHurtState();
 		}
-    }
+	}
+
+	float effectiveDamageTabulation(Collider collider){
+		float retVal = 0;
+		if(collider.gameObject.tag =="enemy") retVal=1;
+		if(collider.gameObject.tag =="enemyCrow") retVal=0.5f;
+		if(collider.gameObject.tag == "carnivore") retVal=01.0f;
+		return retVal * damageRatio;
+	}
     void startHurtState(){
     	hurt = true;
     	hurtStateTimeRemaining = hurtStateTime;
