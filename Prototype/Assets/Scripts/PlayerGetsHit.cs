@@ -38,7 +38,7 @@ public class PlayerGetsHit : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider collider) {
-		if(!hurt && (collider.gameObject.tag =="enemy" || collider.gameObject.tag =="enemyCrow" || collider.gameObject.tag == "carnivore")){
+		if(!hurt && (collider.gameObject.tag =="enemy" || collider.gameObject.tag =="enemyCrow" || collider.gameObject.tag == "carnivore"||collider.gameObject.tag == "enemyNoxiousCrawler")){
 			float damageDealt = effectiveDamageTabulation(collider);
 			lifeRemaining-= damageDealt;
 			if(lifeRemaining<=0){
@@ -54,6 +54,11 @@ public class PlayerGetsHit : MonoBehaviour {
 		if(collider.gameObject.tag =="enemy") retVal=1;
 		if(collider.gameObject.tag =="enemyCrow") retVal=0.5f;
 		if(collider.gameObject.tag == "carnivore") retVal=01.0f;
+		if(collider.gameObject.tag == "enemyNoxiousCrawler"){
+			retVal=1.0f;
+			collider.gameObject.GetComponent<NoxiousCrawlerEnemyScript>().reproduce();
+			Destroy(collider.gameObject);
+		}
 		return retVal * damageRatio;
 	}
     void startHurtState(){
