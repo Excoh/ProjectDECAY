@@ -10,7 +10,7 @@ public class ItemUseScript : MonoBehaviour {
 	private string[] items = {"*Air Freshener",
 							  "*Botany Book",
 							  "*Epipen",
-							  "Extinguisher",
+							  "*Extinguisher",
 							  "*Meat",
 							  "*Flare Gun",
 							  "*Trip Mine",
@@ -31,6 +31,8 @@ public class ItemUseScript : MonoBehaviour {
 	private bool canUseEpipen = true; //whether player can use Epipen or not
 
 	//3 FOR EXTINGUISHER
+	private bool canUseExtinguisher = true;
+	public GameObject fluid;
 
 	//4 FOR MEAT
 	public GameObject meat;
@@ -186,7 +188,13 @@ public class ItemUseScript : MonoBehaviour {
 	/*EXTINGUISHER: player can spray extinguisher fluid*/
 	void Extinguisher()
 	{
-	
+		if(canUseExtinguisher)
+		{
+			canUseExtinguisher = false;
+			GameObject fluidActual = Instantiate(fluid, gameObject.transform.position, gameObject.transform.rotation) as GameObject;
+			fluidActual.transform.Rotate (-90f, 0f, 180f);
+			fluidActual.transform.parent = gameObject.transform;
+		}
 	}
 
 	/*FLARE GUN: player shoots flare to which enemies gather*/

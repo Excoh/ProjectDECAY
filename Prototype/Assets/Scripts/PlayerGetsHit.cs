@@ -38,16 +38,19 @@ public class PlayerGetsHit : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider collider) {
-
-			if(!hurt && (collider.gameObject.tag =="enemy" || collider.gameObject.tag =="enemyCrow" || collider.gameObject.tag == "carnivore")){
-			if(collider.gameObject.tag =="enemy") lifeRemaining-=1;
-			if(collider.gameObject.tag =="enemyCrow") lifeRemaining-=0.5f;
-			if(collider.gameObject.tag == "carnivore") lifeRemaining-=01.0f;
-			if(lifeRemaining<=0){
-				Debug.Log("YOU DIED");
-				Destroy(this.gameObject);
+		if(GameObject.FindGameObjectWithTag("fluid") == null ||
+		   (GameObject.FindGameObjectWithTag ("fluid") != null && !GameObject.FindGameObjectWithTag ("fluid").collider.isTrigger))
+		{
+				if(!hurt && (collider.gameObject.tag =="enemy" || collider.gameObject.tag =="enemyCrow" || collider.gameObject.tag == "carnivore")){
+				if(collider.gameObject.tag =="enemy") lifeRemaining-=1;
+				if(collider.gameObject.tag =="enemyCrow") lifeRemaining-=0.5f;
+				if(collider.gameObject.tag == "carnivore") lifeRemaining-=01.0f;
+				if(lifeRemaining<=0){
+					Debug.Log("YOU DIED");
+					Destroy(this.gameObject);
+				}
+				startHurtState();
 			}
-			startHurtState();
 		}
     }
     void startHurtState(){
