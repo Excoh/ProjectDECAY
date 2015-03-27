@@ -243,6 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d34607e3f0c59d146bcb07aafe302945, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lifeRemaining: 0
 --- !u!23 &297203751
 Renderer:
   m_ObjectHideFlags: 0
@@ -1192,6 +1193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31c562bf9c2eb924eb288f5c12815193, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MRtoMessWith: {fileID: 0}
   swordPrefab: {fileID: 100000, guid: cee6d21f47a19a94a95eacea27501235, type: 2}
   currentSword: {fileID: 0}
   cannonBallPrefab: {fileID: 100000, guid: f9e0c5214ed187547949d8698a427acf, type: 2}

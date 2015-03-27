@@ -11,7 +11,7 @@ TagManager:
   - itemlist
   - flare
   - warning
-  - 
+  - enemyNoxiousCrawler
   - 
   - 
   - 
@@ -24,7 +24,6 @@ TagManager:
   - 
   - 
   - enemyCrow
-  - enemyGrozzle
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX
