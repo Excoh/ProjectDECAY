@@ -178,7 +178,7 @@ public class ItemUseScript : MonoBehaviour {
 		{
 			canUseEpipen = false;
 			//Adjust speed of player and amount of damage done
-			TopDownCharacterController.SetMaxSpeed(50f);
+			TopDownCharacterController.SetSpeedBonus(35f);
 			TopDownCharacterController.SetDamageRatio(0.5f);
 		}
 	}
