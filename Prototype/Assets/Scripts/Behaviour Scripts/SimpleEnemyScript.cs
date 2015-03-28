@@ -19,7 +19,7 @@ public class SimpleEnemyScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (canMove && Vector3.Distance (transform.position, GameObject.FindGameObjectWithTag ("Player").transform.position) <= TopDownCharacterController.GetNoise ()*50f) {
+		if (canMove && Vector3.Distance (transform.position, characterObject.transform.position) <= TopDownCharacterController.GetNoise ()*50f) {
 						meatToFollow = GameObject.FindGameObjectWithTag ("meat");
 						flareToFollow = GameObject.FindGameObjectWithTag ("flare");
 						if (characterObject != null && flareToFollow == null && (meatToFollow == null || enemyType != "carnivore")) {

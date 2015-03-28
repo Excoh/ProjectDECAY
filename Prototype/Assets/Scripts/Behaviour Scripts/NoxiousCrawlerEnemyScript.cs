@@ -10,6 +10,7 @@ public class NoxiousCrawlerEnemyScript : MonoBehaviour {
 		isMiniCrawler = newVal;
 	}
 	void Start () {
+		characterObject = GameObject.FindGameObjectWithTag ("Player");
 		currentState = eBehaviourState.wait;
 		reportStateChange();
 
