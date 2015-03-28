@@ -22,7 +22,7 @@ public class TopDownCharacterController : MonoBehaviour {
 	static float lifeRemaining;
 	float hurtStateTime;
 	float hurtStateTimeRemaining;
-	public MeshRenderer MRtoMessWith;
+	MeshRenderer MRtoMessWith;
 	static float damageRatio;
 
 	// Use this for initialization
@@ -32,6 +32,7 @@ public class TopDownCharacterController : MonoBehaviour {
 		mBaseSpeed = 20;
 		unitVelo = Vector2.zero;
 		currentWeapon = WeaponModes.sword;
+		MRtoMessWith = this.gameObject.GetComponent<MeshRenderer>();
 	//
 	//Get Hit Vars Below:
 	//

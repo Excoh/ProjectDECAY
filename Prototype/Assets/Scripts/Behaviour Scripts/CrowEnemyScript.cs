@@ -9,15 +9,16 @@ public class CrowEnemyScript : MonoBehaviour {
 	eBehaviourState currentState;
 	// Use this for initialization
 	void Start () {
+		playerObject = GameObject.FindWithTag("Player");
 		currentState = eBehaviourState.wait;
 		reportStateChange();
 	}
 	
-	public GameObject characterObject;
+	GameObject playerObject;
 	// Update is called once per frame
 	void Update() {
 		// Switch statement to behavriours
-		if(characterObject!=null)distBetween = Vector3.Distance(characterObject.transform.position, gameObject.transform.position);
+		if(playerObject!=null)distBetween = Vector3.Distance(playerObject.transform.position, gameObject.transform.position);
 		switch(currentState){
 			case eBehaviourState.pursue:
 				pursue();
@@ -49,14 +50,14 @@ public class CrowEnemyScript : MonoBehaviour {
 	float timeSinceLastAttack = 0;
 
 	void pursue(){
-		if(characterObject!=null){
-			transform.position = Vector3.MoveTowards(transform.position, characterObject.transform.position, 10 * Time.deltaTime);
+		if(playerObject!=null){
+			transform.position = Vector3.MoveTowards(transform.position, playerObject.transform.position, 10 * Time.deltaTime);
 		// check attack horizon vs distance see if you can attack, if so set the attack point
 			timeSinceLastAttack+=Time.deltaTime;
 			if ( attackHorizon > distBetween && timeSinceLastAttack>attackRefractoryPeriod){ //check if its close enough and if its too soon
 				// set attack point and move there
 				timeSinceLastAttack = 0;
-				attackPoint = gameObject.transform.position + (2* (characterObject.transform.position- gameObject.transform.position ));
+				attackPoint = gameObject.transform.position + (2* (playerObject.transform.position- gameObject.transform.position ));
 				currentState = eBehaviourState.attack;
 				reportStateChange();
 			}
@@ -66,7 +67,7 @@ public class CrowEnemyScript : MonoBehaviour {
 	void wait(){
 		//check aggro horizon vs distance and hope player comes into range
 		//Debug.Log(distBetween);
-		if(characterObject!=null && aggroHorizon>distBetween){
+		if(playerObject!=null && aggroHorizon>distBetween){
 			currentState = eBehaviourState.pursue;
 			reportStateChange();
 		}

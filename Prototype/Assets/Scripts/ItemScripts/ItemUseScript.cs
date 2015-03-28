@@ -119,6 +119,7 @@ public class ItemUseScript : MonoBehaviour {
 	/*Item Scroll: By using the right or left arrow keys, Player
 	 *can scroll through available items*/
 	//MORE FOR TESTING
+	string currentItem = "";
 	void ItemScroll()
 	{
 		//Scrolls through items
@@ -129,7 +130,6 @@ public class ItemUseScript : MonoBehaviour {
 			{
 					selected = 0;
 			}
-			GameObject.FindGameObjectWithTag ("itemlist").guiText.text = items [selected];
 		} 
 		else if (Input.GetKeyDown (KeyCode.LeftArrow)) //scrolling left
 		{
@@ -138,11 +138,14 @@ public class ItemUseScript : MonoBehaviour {
 			{
 				selected = 11;
 			}
-			GameObject.FindGameObjectWithTag ("itemlist").guiText.text = items [selected];
 		}
-	
+		currentItem = "" + items [selected];
 	}
 	
+	void OnGUI(){
+		GUI.Box(new Rect(0, 0, Screen.width/8, Screen.height/16), currentItem);
+	}
+
 	/*AIR FRESHENER: the player becomes invisible to blind enemies*/
 	void UseAirFreshener()
 	{

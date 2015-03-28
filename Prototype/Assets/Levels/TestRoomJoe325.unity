@@ -448,7 +448,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2654780adbabe6419ff6f85334754ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterObject: {fileID: 1731281989}
 --- !u!54 &297203756
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -761,7 +760,7 @@ Prefab:
     - target: {fileID: 11400000, guid: e825304dd659e1048a3c851180929906, type: 2}
       propertyPath: characterObject
       value: 
-      objectReference: {fileID: 1731281989}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e825304dd659e1048a3c851180929906, type: 2}
   m_RootGameObject: {fileID: 1786437750}
@@ -1406,57 +1405,6 @@ Transform:
   - {fileID: 159495276}
   m_Father: {fileID: 1786252698}
   m_RootOrder: 4
---- !u!1 &968437415
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 968437417}
-  - 132: {fileID: 968437416}
-  m_Layer: 0
-  m_Name: CurrentItem
-  m_TagString: itemlist
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!132 &968437416
-GUIText:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 968437415}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Text: Air Freshener
-  m_Anchor: 0
-  m_Alignment: 0
-  m_PixelOffset: {x: -450, y: 200}
-  m_LineSpacing: 1
-  m_TabSize: 4
-  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-  m_Material: {fileID: 0}
-  m_FontSize: 0
-  m_FontStyle: 0
-  m_Color:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_PixelCorrect: 1
-  m_RichText: 1
---- !u!4 &968437417
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 968437415}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .5, y: .5, z: 15.8819847}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
 --- !u!1 &1040029207
 GameObject:
   m_ObjectHideFlags: 0
@@ -2485,6 +2433,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100028, guid: 5cec8262eb49d9b45823f05ce4459501, type: 2}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5cec8262eb49d9b45823f05ce4459501, type: 2}
   m_RootGameObject: {fileID: 1731281989}
@@ -2698,12 +2650,12 @@ GameObject:
   - 65: {fileID: 1731281996}
   - 23: {fileID: 1731281995}
   - 114: {fileID: 1731281994}
-  - 114: {fileID: 1731281993}
   - 54: {fileID: 1731281992}
   - 114: {fileID: 1731281991}
+  - 132: {fileID: 1731281993}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2754,18 +2706,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
---- !u!114 &1731281993
-MonoBehaviour:
+--- !u!132 &1731281993
+GUIText:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400002, guid: 5cec8262eb49d9b45823f05ce4459501,
+  m_PrefabParentObject: {fileID: 13200000, guid: 5cec8262eb49d9b45823f05ce4459501,
     type: 2}
   m_PrefabInternal: {fileID: 1652634818}
   m_GameObject: {fileID: 1731281989}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  serializedVersion: 3
+  m_Text: Air Freshener
+  m_Anchor: 0
+  m_Alignment: 0
+  m_PixelOffset: {x: -450, y: 200}
+  m_LineSpacing: 1
+  m_TabSize: 4
+  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Material: {fileID: 0}
+  m_FontSize: 0
+  m_FontStyle: 0
+  m_Color:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_PixelCorrect: 1
+  m_RichText: 1
 --- !u!114 &1731281994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2778,7 +2742,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31c562bf9c2eb924eb288f5c12815193, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MRtoMessWith: {fileID: 1731281995}
   swordPrefab: {fileID: 100000, guid: cee6d21f47a19a94a95eacea27501235, type: 2}
   currentSword: {fileID: 0}
   cannonBallPrefab: {fileID: 100000, guid: f9e0c5214ed187547949d8698a427acf, type: 2}
@@ -2975,7 +2938,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e6c2c9d4b387c047a348490c030d442, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterObject: {fileID: 1731281989}
+  playerObject: {fileID: 0}
 --- !u!23 &1786437752
 Renderer:
   m_ObjectHideFlags: 0
