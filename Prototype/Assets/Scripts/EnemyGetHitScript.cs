@@ -3,7 +3,7 @@ using System.Collections;
 
 public class EnemyGetHitScript : MonoBehaviour {
 
-	public float lifeRemaining;
+	float lifeRemaining;
 	// Use this for initialization
 	void Start () {
 		init();

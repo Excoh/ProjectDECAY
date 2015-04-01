@@ -3,18 +3,18 @@ using System.Collections;
 
 public class SimpleEnemyScript : MonoBehaviour {
 
-	public GameObject characterObject;
+	GameObject characterObject;
 	private GameObject meatToFollow;
 	private GameObject flareToFollow;
 
-	public bool canMove = true;
+	bool canMove = true;
 
 	//ENEMY TYPES: "common", "carnivore", "blind", "mutated"
-	public string enemyType;
+	string enemyType;
 
 	// Use this for initialization
 	void Start () {
-		
+		characterObject = GameObject.FindGameObjectWithTag("Player");
 	}
 
 	// Update is called once per frame

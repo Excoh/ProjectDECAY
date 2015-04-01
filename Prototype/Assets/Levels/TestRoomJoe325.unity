@@ -381,7 +381,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d34607e3f0c59d146bcb07aafe302945, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeRemaining: 0
 --- !u!23 &297203751
 Renderer:
   m_ObjectHideFlags: 0
@@ -2938,7 +2937,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e6c2c9d4b387c047a348490c030d442, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerObject: {fileID: 0}
 --- !u!23 &1786437752
 Renderer:
   m_ObjectHideFlags: 0
@@ -3005,7 +3003,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d34607e3f0c59d146bcb07aafe302945, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeRemaining: 0
 --- !u!54 &1786437757
 Rigidbody:
   m_ObjectHideFlags: 0

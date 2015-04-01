@@ -13,7 +13,7 @@ public class TopDownCharacterController : MonoBehaviour {
 	static float baseAttackStrength = 1;
 
 
-	public static float noise = 2.0f;
+	static float noise = 2.0f;
 
 	//
 	//Get Hit Vars Below:

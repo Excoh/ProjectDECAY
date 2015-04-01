@@ -15,7 +15,7 @@ public class NoxiousCrawlerEnemyScript : MonoBehaviour {
 		reportStateChange();
 
 	}
-	public GameObject playerObject;
+	GameObject playerObject;
 	// Update is called once per frame
 	void Update () {
 		if(playerObject!=null)distBetween = 
