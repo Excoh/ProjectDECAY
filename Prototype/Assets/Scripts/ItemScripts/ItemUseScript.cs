@@ -61,10 +61,25 @@ public class ItemUseScript : MonoBehaviour {
 	//10 FOR KEVLAR VEST
 
 	//11 FOR NIGHT-VISION GOGGLES
+	//Light Variables
+	GameObject nightVision;
+	Light lightComp;
+	public Color lightColor;
+	public float lightInt;
+	public float lightRange;
+	
+	//Player Variables
+	GameObject playerObject;
+	public Transform target;
 
 	// Use this for initialization
 	void Start () {
-	
+		playerObject = GameObject.FindGameObjectWithTag("Player");
+		target = playerObject.transform;
+		
+		nightVision = new GameObject("Night Vision Mode");
+		lightComp = nightVision.AddComponent<Light>();
+		lightComp.color = Color.clear;
 	}
 	
 	// Update is called once per frame
@@ -114,6 +129,9 @@ public class ItemUseScript : MonoBehaviour {
 					break;
 			}
 		}
+
+		//Update position of Night Vision Light
+		nightVision.transform.position = target.position;
 	}
 
 	/*Item Scroll: By using the right or left arrow keys, Player
@@ -273,6 +291,20 @@ public class ItemUseScript : MonoBehaviour {
 	/*NIGHT-VISION GOGGLES: player can see better in dark*/
 	void NightVision()
 	{
+		if (lightComp.color == Color.clear) //Turn light on
+		{
+			lightComp.color = lightColor;
+			//To make light follow player
+			nightVision.transform.position = target.position;
+			lightComp.intensity = lightInt;
+			lightComp.range = lightRange;
+		}
+		
+		else //Light Off
+		{lightComp.color = Color.clear;}
+
+		//Update position of Night Vision Light
+		nightVision.transform.position = target.position;
 
 	}
 }
