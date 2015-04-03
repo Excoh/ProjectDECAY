@@ -275,7 +275,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d34607e3f0c59d146bcb07aafe302945, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeRemaining: 0
 --- !u!23 &297203751
 Renderer:
   m_ObjectHideFlags: 0
@@ -338,9 +337,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6bad47d49fe5c845b6aeb2a5ed31133, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterObject: {fileID: 876890464}
-  canMove: 1
-  enemyType: 
 --- !u!54 &297203756
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -859,9 +855,10 @@ GameObject:
   - 114: {fileID: 876890470}
   - 54: {fileID: 876890471}
   - 114: {fileID: 876890472}
+  - 114: {fileID: 876890473}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -930,7 +927,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31c562bf9c2eb924eb288f5c12815193, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MRtoMessWith: {fileID: 0}
   swordPrefab: {fileID: 100000, guid: cee6d21f47a19a94a95eacea27501235, type: 2}
   currentSword: {fileID: 0}
   cannonBallPrefab: {fileID: 100000, guid: f9e0c5214ed187547949d8698a427acf, type: 2}
@@ -946,7 +942,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a2bbc989b8fb13449c5678091329a6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MRtoMessWith: {fileID: 876890466}
 --- !u!54 &876890471
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -973,6 +968,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60388044fdda30348b8c4601ba94bebc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &876890473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 876890464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1b78df55f9392e408437978cfbad423, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meat: {fileID: 0}
+  flare: {fileID: 0}
+  flareSpeed: 20
+  mine: {fileID: 0}
+  lightColor: {r: .117241383, g: 1, b: 0, a: 0}
+  lightInt: 1
+  lightRange: 50
+  target: {fileID: 0}
 --- !u!1 &918924544
 GameObject:
   m_ObjectHideFlags: 0

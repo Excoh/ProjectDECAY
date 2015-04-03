@@ -63,10 +63,25 @@ public class ItemUseScript : MonoBehaviour {
 	//10 FOR KEVLAR VEST
 
 	//11 FOR NIGHT-VISION GOGGLES
+	//Light Variables
+	GameObject nightVision;
+	Light lightComp;
+	public Color lightColor;
+	public float lightInt;
+	public float lightRange;
+	
+	//Player Variables
+	GameObject playerObject;
+	public Transform target;
 
 	// Use this for initialization
 	void Start () {
-	
+		playerObject = GameObject.FindGameObjectWithTag("Player");
+		target = playerObject.transform;
+		
+		nightVision = new GameObject("Night Vision Mode");
+		lightComp = nightVision.AddComponent<Light>();
+		lightComp.color = Color.clear;
 	}
 	
 	// Update is called once per frame
@@ -116,11 +131,15 @@ public class ItemUseScript : MonoBehaviour {
 					break;
 			}
 		}
+
+		//Update position of Night Vision Light
+		nightVision.transform.position = target.position;
 	}
 
 	/*Item Scroll: By using the right or left arrow keys, Player
 	 *can scroll through available items*/
 	//MORE FOR TESTING
+	string currentItem = "";
 	void ItemScroll()
 	{
 		//Scrolls through items
@@ -131,7 +150,6 @@ public class ItemUseScript : MonoBehaviour {
 			{
 					selected = 0;
 			}
-			GameObject.FindGameObjectWithTag ("itemlist").guiText.text = items [selected];
 		} 
 		else if (Input.GetKeyDown (KeyCode.LeftArrow)) //scrolling left
 		{
@@ -140,11 +158,14 @@ public class ItemUseScript : MonoBehaviour {
 			{
 				selected = 11;
 			}
-			GameObject.FindGameObjectWithTag ("itemlist").guiText.text = items [selected];
 		}
-	
+		currentItem = "" + items [selected];
 	}
 	
+	void OnGUI(){
+		GUI.Box(new Rect(0, 0, Screen.width/8, Screen.height/16), currentItem);
+	}
+
 	/*AIR FRESHENER: the player becomes invisible to blind enemies*/
 	void UseAirFreshener()
 	{
@@ -180,7 +201,7 @@ public class ItemUseScript : MonoBehaviour {
 		{
 			canUseEpipen = false;
 			//Adjust speed of player and amount of damage done
-			TopDownCharacterController.SetMaxSpeed(50f);
+			TopDownCharacterController.SetSpeedBonus(35f);
 			TopDownCharacterController.SetDamageRatio(0.5f);
 		}
 	}
@@ -278,6 +299,20 @@ public class ItemUseScript : MonoBehaviour {
 	/*NIGHT-VISION GOGGLES: player can see better in dark*/
 	void NightVision()
 	{
+		if (lightComp.color == Color.clear) //Turn light on
+		{
+			lightComp.color = lightColor;
+			//To make light follow player
+			nightVision.transform.position = target.position;
+			lightComp.intensity = lightInt;
+			lightComp.range = lightRange;
+		}
+		
+		else //Light Off
+		{lightComp.color = Color.clear;}
+
+		//Update position of Night Vision Light
+		nightVision.transform.position = target.position;
 
 	}
 }

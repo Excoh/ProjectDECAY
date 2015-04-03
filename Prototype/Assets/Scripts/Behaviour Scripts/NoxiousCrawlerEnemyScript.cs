@@ -10,15 +10,16 @@ public class NoxiousCrawlerEnemyScript : MonoBehaviour {
 		isMiniCrawler = newVal;
 	}
 	void Start () {
+		playerObject = GameObject.FindWithTag("Player");
 		currentState = eBehaviourState.wait;
 		reportStateChange();
 
 	}
-	public GameObject characterObject;
+	GameObject playerObject;
 	// Update is called once per frame
 	void Update () {
-		if(characterObject!=null)distBetween = 
-		Vector3.Distance(characterObject.transform.position, gameObject.transform.position);
+		if(playerObject!=null)distBetween = 
+		Vector3.Distance(playerObject.transform.position, gameObject.transform.position);
 		switch(currentState){
 			case eBehaviourState.pursue:
 				pursue();
@@ -34,15 +35,15 @@ public class NoxiousCrawlerEnemyScript : MonoBehaviour {
 	float distBetween = 500;
 
 	void pursue(){
-		if(characterObject!=null){
-			transform.position = Vector3.MoveTowards(transform.position, characterObject.transform.position, 15 * Time.deltaTime);
+		if(playerObject!=null){
+			transform.position = Vector3.MoveTowards(transform.position, playerObject.transform.position, 15 * Time.deltaTime);
 		}
 	}
 
 	void wait(){
 		//check aggro horizon vs distance and hope player comes into range
 		//Debug.Log(distBetween);
-		if(characterObject!=null && aggroHorizon>distBetween){
+		if(playerObject!=null && aggroHorizon>distBetween){
 			currentState = eBehaviourState.pursue;
 			reportStateChange();
 		}

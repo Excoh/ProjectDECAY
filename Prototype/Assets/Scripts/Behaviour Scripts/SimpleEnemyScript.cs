@@ -3,23 +3,23 @@ using System.Collections;
 
 public class SimpleEnemyScript : MonoBehaviour {
 
-	public GameObject characterObject;
+	GameObject characterObject;
 	private GameObject meatToFollow;
 	private GameObject flareToFollow;
 
-	public bool canMove = true;
+	bool canMove = true;
 
 	//ENEMY TYPES: "common", "carnivore", "blind", "mutated"
-	public string enemyType;
+	string enemyType;
 
 	// Use this for initialization
 	void Start () {
-		
+		characterObject = GameObject.FindGameObjectWithTag("Player");
 	}
 
 	// Update is called once per frame
 	void Update () {
-		if (canMove && Vector3.Distance (transform.position, GameObject.FindGameObjectWithTag ("Player").transform.position) <= TopDownCharacterController.GetNoise ()*50f) {
+		if (canMove && Vector3.Distance (transform.position, characterObject.transform.position) <= TopDownCharacterController.GetNoise ()*50f) {
 						meatToFollow = GameObject.FindGameObjectWithTag ("meat");
 						flareToFollow = GameObject.FindGameObjectWithTag ("flare");
 						if (characterObject != null && flareToFollow == null && (meatToFollow == null || enemyType != "carnivore")) {

@@ -4,15 +4,16 @@ using System.Collections;
 public class TopDownCharacterController : MonoBehaviour {
 
 	float mPlayerRotation;
-	static float mMaxSpeed;
-	Vector2 baseVelo;
+	static float mBaseSpeed;
+	static float mSpeedBonus;
+	Vector2 unitVelo;
 	enum WeaponModes: int{sword, gun}
 	int numOfWeaponModes =2;
 	static WeaponModes currentWeapon;
 	static float baseAttackStrength = 1;
 
 
-	public static float noise = 2.0f;
+	static float noise = 2.0f;
 
 	//
 	//Get Hit Vars Below:
@@ -21,15 +22,17 @@ public class TopDownCharacterController : MonoBehaviour {
 	static float lifeRemaining;
 	float hurtStateTime;
 	float hurtStateTimeRemaining;
-	public MeshRenderer MRtoMessWith;
+	MeshRenderer MRtoMessWith;
 	static float damageRatio;
 
 	// Use this for initialization
 	void Start () {
+		mSpeedBonus = 1;
 		mPlayerRotation= 0;
-		mMaxSpeed = 20;
-		baseVelo = Vector2.zero;
+		mBaseSpeed = 20;
+		unitVelo = Vector2.zero;
 		currentWeapon = WeaponModes.sword;
+		MRtoMessWith = this.gameObject.GetComponent<MeshRenderer>();
 	//
 	//Get Hit Vars Below:
 	//
@@ -53,20 +56,20 @@ public class TopDownCharacterController : MonoBehaviour {
 
 
 	void Control(){
-		baseVelo = Vector2.zero;
+		unitVelo = Vector2.zero;
 		if (Input.GetKey(KeyCode.W)){
-			baseVelo.y+=1;
+			unitVelo.y+=1;
 		}
 		if (Input.GetKey(KeyCode.A)){
-			baseVelo.x-=1;
+			unitVelo.x-=1;
 		}
 		if (Input.GetKey(KeyCode.S)){
-			baseVelo.y-=1;
+			unitVelo.y-=1;
 		}
 		if (Input.GetKey(KeyCode.D)){
-			baseVelo.x+=1;
+			unitVelo.x+=1;
 		}
-		baseVelo.Normalize();
+		unitVelo.Normalize();
 	}
 
 	void Move(){
@@ -77,7 +80,7 @@ public class TopDownCharacterController : MonoBehaviour {
 	}
 
 	public Vector2 getEffectiveVelo(){
-		return baseVelo * mMaxSpeed* Time.deltaTime; // Insert modifier list here if need be
+		return unitVelo * (mBaseSpeed +  mSpeedBonus)* Time.deltaTime; // Insert modifier list here if need be
 	}
 
 	public GameObject swordPrefab;
@@ -126,9 +129,9 @@ public class TopDownCharacterController : MonoBehaviour {
 	}
 
 	/*Set a new max speed for player*/
-	public static void SetMaxSpeed(float newSpeed)
+	public static void SetSpeedBonus(float newBonus)
 	{
-		mMaxSpeed = newSpeed;
+		mSpeedBonus = newBonus;
 	}
 
 	public static void SetBaseAttackStrength(float newStrength)
