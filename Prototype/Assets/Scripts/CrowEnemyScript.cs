@@ -93,8 +93,8 @@ public class CrowEnemyScript : MonoBehaviour {
 		reproductionCountup+=Time.deltaTime;
 		if(reproductionCountup>reproductionTimeFrame){
 			reproductionCountup = 0;
-			//TODO: Create new Crow in space verified to be empty
-			//TODO: Switch to waiting mode
+			// Create new Crow in space verified to be empty
+			// Switch to waiting mode
 
 			//rayvast in cardinal directions
 			// first one thats not occupied have it create there

@@ -50,7 +50,7 @@ public class ItemUseScript : MonoBehaviour {
 
 	//7 FOR MUTATED FRUITS
 	private int numFruits = 3;
-	private float damage = 2f;
+	private float newDamageRatio = 2f;
 	private float lifeIncrease = 1f;
 	private int plusFruits = 2;
 
@@ -167,7 +167,7 @@ public class ItemUseScript : MonoBehaviour {
 		if (canUseBook)
 		{
 			canUseBook = false;
-			damage = 1f;
+			newDamageRatio = 1f;
 			lifeIncrease = 2f;
 			plusFruits = 3;
 		}
@@ -181,7 +181,7 @@ public class ItemUseScript : MonoBehaviour {
 			canUseEpipen = false;
 			//Adjust speed of player and amount of damage done
 			TopDownCharacterController.SetMaxSpeed(50f);
-			PlayerGetsHit.SetDamage(0.5f);
+			TopDownCharacterController.SetDamageRatio(0.5f);
 		}
 	}
 
@@ -239,11 +239,11 @@ public class ItemUseScript : MonoBehaviour {
 			int effect = Random.Range (0, 3);
 			switch (effect) {
 			case 0: //Player will get hurt twice as much
-					PlayerGetsHit.SetDamage (damage);
+					TopDownCharacterController.SetDamageRatio (newDamageRatio);
 					Debug.Log ("HURT TWICE AS MUCH");
 					break;
 			case 1: //Player regains health
-					PlayerGetsHit.IncreaseLife (lifeIncrease);
+					TopDownCharacterController.IncreaseLife (lifeIncrease);
 					Debug.Log ("LIFE INCREASE +1");
 					break;
 			case 2: //Player gets more fruit
@@ -269,7 +269,7 @@ public class ItemUseScript : MonoBehaviour {
 		canUseRags = false;
 	}
 
-	/*KEVLAR VEST: protects player form projectiles*/
+	/*KEVLAR VEST: protects player from projectiles*/
 	void KevlarVest()
 	{
 
