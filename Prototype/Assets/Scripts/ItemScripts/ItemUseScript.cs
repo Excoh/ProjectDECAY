@@ -202,7 +202,7 @@ public class ItemUseScript : MonoBehaviour {
 			canUseEpipen = false;
 			//Adjust speed of player and amount of damage done
 			TopDownCharacterController.SetSpeedBonus(35f);
-			TopDownCharacterController.SetDamageRatio(0.5f);
+			TopDownCharacterController.SetInDamageRatio(0.5f);
 		}
 	}
 
@@ -260,7 +260,7 @@ public class ItemUseScript : MonoBehaviour {
 			int effect = Random.Range (0, 3);
 			switch (effect) {
 			case 0: //Player will get hurt twice as much
-					TopDownCharacterController.SetDamageRatio (newDamageRatio);
+					TopDownCharacterController.SetInDamageRatio (newDamageRatio);
 					Debug.Log ("HURT TWICE AS MUCH");
 					break;
 			case 1: //Player regains health

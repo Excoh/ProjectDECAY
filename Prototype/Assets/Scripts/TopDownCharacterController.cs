@@ -23,7 +23,7 @@ public class TopDownCharacterController : MonoBehaviour {
 	float hurtStateTime;
 	float hurtStateTimeRemaining;
 	MeshRenderer MRtoMessWith;
-	static float damageRatio;
+	static float inDamageRatio;
 
 	// Use this for initialization
 	void Start () {
@@ -39,7 +39,7 @@ public class TopDownCharacterController : MonoBehaviour {
 		hurt = false;
 		lifeRemaining = 5f;
 		hurtStateTime = 2;
-		damageRatio = 1f;
+		inDamageRatio = 1f;
 		hurtStateTimeRemaining = hurtStateTime;
 	}
 	
@@ -151,9 +151,9 @@ public class TopDownCharacterController : MonoBehaviour {
 	}
 
 	
-	public static void SetDamageRatio(float newDamageRatio)
+	public static void SetInDamageRatio(float newInDamageRatio)
 	{
-		damageRatio = newDamageRatio;
+		inDamageRatio = newInDamageRatio;
 	}
 
 //NEED TO HAVE A CATCH FOR GOING OVER MAX LIFE
@@ -174,17 +174,21 @@ public class TopDownCharacterController : MonoBehaviour {
 		}
 	}
 
+	const float mEnemcyGenericInDamage = 1.0f;
+	const float mEnemcyCrowInDamage = 0.5f;
+	const float mEnemcyCarnivoreInDamage = 1.0f;
+	const float mEnemcyNoxiousCrawlerInDamage = 1.0f;
 	float effectiveDamageTabulation(Collider collider){
 		float retVal = 0;
-		if(collider.gameObject.tag =="enemy") retVal=1;
-		if(collider.gameObject.tag =="enemyCrow") retVal=0.5f;
-		if(collider.gameObject.tag == "carnivore") retVal=01.0f;
+		if(collider.gameObject.tag =="enemy") retVal=mEnemcyGenericInDamage;
+		if(collider.gameObject.tag =="enemyCrow") retVal=mEnemcyCrowInDamage;
+		if(collider.gameObject.tag == "carnivore") retVal=mEnemcyCarnivoreInDamage;
 		if(collider.gameObject.tag == "enemyNoxiousCrawler"){
-			retVal=1.0f;
+			retVal=mEnemcyNoxiousCrawlerInDamage;
 			collider.gameObject.GetComponent<NoxiousCrawlerEnemyScript>().reproduce();
 			Destroy(collider.gameObject);
 		}
-		return retVal * damageRatio;
+		return retVal * inDamageRatio;
 	}
     void startHurtState(){
     	hurt = true;

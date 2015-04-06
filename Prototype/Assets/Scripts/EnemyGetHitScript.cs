@@ -20,13 +20,17 @@ public class EnemyGetHitScript : MonoBehaviour {
 			Destroy(collider.gameObject);// Bullet explodes sword ... bounces off?
 		}
     }
+    const float defaultInitialLife = 1.0f;
+    const float crowInitialLife = 1.0f;
+    const float crawlerInitialLife = 3.0f;
+
     void init(){
     	if(this.gameObject.tag=="enemyCrow"){
-    		 lifeRemaining = 1;
+    		 lifeRemaining = crowInitialLife;
 		 }else if(this.gameObject.tag=="enemyNoxiousCrawler"){
-    		 lifeRemaining = 3;
+    		 lifeRemaining = crawlerInitialLife;
 		 }else{
-		 	lifeRemaining = 1;//default val
+		 	lifeRemaining = defaultInitialLife;//default val
 		 }
     }
 
