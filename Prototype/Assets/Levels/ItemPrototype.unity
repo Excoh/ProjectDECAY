@@ -73,6 +73,7 @@ NavMeshSettings:
     minRegionArea: 2
     widthInaccuracy: 16.666666
     heightInaccuracy: 10
+    tileSizeHint: 0
   m_NavMesh: {fileID: 0}
 --- !u!1 &60256973
 GameObject:
@@ -979,6 +980,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1b78df55f9392e408437978cfbad423, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fluid: {fileID: 0}
   meat: {fileID: 0}
   flare: {fileID: 0}
   flareSpeed: 20
