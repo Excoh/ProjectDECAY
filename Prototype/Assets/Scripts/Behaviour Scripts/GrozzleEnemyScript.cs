@@ -12,18 +12,11 @@ public class GrozzleEnemyScript : MonoBehaviour
 	public float moveSpeed;
 	public float moveMaxSpeed;
 	public int rotationSpeed;
-	public float grozzleHP;
 
-	const float grozzleMaxHP = 10;
 	const float moveSpeedMulti = 1.001f;
 	float agroRange = 100;
 	float attackRange = 10;
 	float knockback = -500;
-
-	//Regeneration Variables
-	const float regenRate = 1;
-	float regenTime;
-	const float regenDelay = 3;
 
 	private Transform grozzleTransform;
 
@@ -36,13 +29,6 @@ public class GrozzleEnemyScript : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		//At start Grozzle is at full HP and in the idle state
-		//grozzleHP = grozzleMaxHP;
-		regenTime = Time.time + regenDelay;
-
-		//Grozzle HP set to 1 in order to test Regen
-		grozzleHP = 1;
-
 		//Searches for object with "Player" Tag and locks on
 		playerObject = GameObject.FindGameObjectWithTag ("Player");
 		target = playerObject.transform;
@@ -56,18 +42,14 @@ public class GrozzleEnemyScript : MonoBehaviour
 
 		//If Statements for Grozzle States
 		if (playerDistance <= attackRange)
-		{attackState();}
+		{
+			attackState();
+			agroState();
+		}
 		else if (playerDistance <= agroRange) 
 		{agroState();}
 		else
 		{idleState();}
-
-		//Calls Regen function every regenDelay seconds
-		if (Time.time > regenTime)
-		{
-			regenTime = Time.time + regenDelay;
-			grozzleRegen ();
-		}
 	}
 
 	void attackState()
@@ -92,16 +74,6 @@ public class GrozzleEnemyScript : MonoBehaviour
 	void idleState()
 	{
 		//Player is too far away from Grozzle
-		Debug.Log ("The Grozzle is in the idle state");
-	}
-
-	//Regenerate Grozzle's HP
-	void grozzleRegen()
-	{
-		if (grozzleHP < grozzleMaxHP)
-		{
-			grozzleHP += regenRate;
-			Debug.Log ("Grozzle HP Regenerated! Grozzle HP: " + grozzleHP);
-		}
+		//Debug.Log ("The Grozzle is in the idle state");
 	}
 }

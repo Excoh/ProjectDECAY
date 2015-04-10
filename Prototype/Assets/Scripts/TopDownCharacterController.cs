@@ -163,7 +163,7 @@ public class TopDownCharacterController : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider collider) {
-		if(!hurt && (collider.gameObject.tag =="enemy" || collider.gameObject.tag =="enemyCrow" || collider.gameObject.tag == "carnivore"||collider.gameObject.tag == "enemyNoxiousCrawler")){
+		if(!hurt && (collider.gameObject.tag =="enemy" || collider.gameObject.tag =="enemyCrow" || collider.gameObject.tag == "enemyGrozzle" || collider.gameObject.tag == "carnivore"||collider.gameObject.tag == "enemyNoxiousCrawler")){
 			float damageDealt = effectiveDamageTabulation(collider);
 			lifeRemaining-= damageDealt;
 			if(lifeRemaining<=0){
@@ -176,12 +176,15 @@ public class TopDownCharacterController : MonoBehaviour {
 
 	const float mEnemcyGenericInDamage = 1.0f;
 	const float mEnemcyCrowInDamage = 0.5f;
+	const float mEnemcyGrozzleInDamage = 1.5f;
 	const float mEnemcyCarnivoreInDamage = 1.0f;
 	const float mEnemcyNoxiousCrawlerInDamage = 1.0f;
+
 	float effectiveDamageTabulation(Collider collider){
 		float retVal = 0;
 		if(collider.gameObject.tag =="enemy") retVal=mEnemcyGenericInDamage;
 		if(collider.gameObject.tag =="enemyCrow") retVal=mEnemcyCrowInDamage;
+		if(collider.gameObject.tag == "enemyGrozzle") retVal = mEnemcyGrozzleInDamage;
 		if(collider.gameObject.tag == "carnivore") retVal=mEnemcyCarnivoreInDamage;
 		if(collider.gameObject.tag == "enemyNoxiousCrawler"){
 			retVal=mEnemcyNoxiousCrawlerInDamage;
