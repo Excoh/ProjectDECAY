@@ -44,7 +44,11 @@ public class CustomDTileMap {
 	//Global Variables
 	bool[,] map_layout;
 	GameObject wallGB;
+	GameObject crowGB;
+	GameObject grozzleGB;
+	GameObject crawlerGB;
 	Transform wallsMGR;
+	Transform enemiesMGR;
 	float tileSize;
 	int size_z;
 
@@ -138,9 +142,13 @@ public class CustomDTileMap {
 
 	void UnitManager(){
 		wallGB = GameObject.Find("ObjectManager").GetComponent<ObjectManager>().createWall();
+		crowGB = GameObject.Find("ObjectManager").GetComponent<ObjectManager>().createCrow();
+		grozzleGB = GameObject.Find("ObjectManager").GetComponent<ObjectManager>().createGrozzle();
+		crawlerGB = GameObject.Find("ObjectManager").GetComponent<ObjectManager>().createCrawler();
 		tileSize = GameObject.Find("TileMap").GetComponent<TileMap>().tileSize;
 		size_z = GameObject.Find("TileMap").GetComponent<TileMap>().size_z;
 		wallsMGR = GameObject.Find("Walls").transform;
+		enemiesMGR = GameObject.Find("Enemies").transform;
 	}
 	
 	public CustomDTileMap(int size_x, int size_y, int columnOfRooms, int rowOfRooms, int numOfRooms){
@@ -408,6 +416,7 @@ public class CustomDTileMap {
 					map_data[r.left+x,r.top+y] = (int) tileType.Environmental_Hazards;
 				}
 				else if(x == 6 && (y == 4 || y == 7)){
+					GameObject enemy = createEnemy(r.left + x, r.top+y);
 					map_data[r.left+x,r.top+y] = (int) tileType.Monster_Spawn;
 				}
 				else {
@@ -447,6 +456,7 @@ public class CustomDTileMap {
 					map_data[r.left+x,r.top+y] = (int) tileType.Environmental_Hazards;
 				}
 				else if((x == 2 && y == 1)||(x == 2 && y == 9)||(x == 5 && y ==9)){
+					GameObject enemy = createEnemy(r.left + x, r.top+y);
 					map_data[r.left+x,r.top+y] = (int) tileType.Monster_Spawn;
 				}
 				else {
@@ -479,6 +489,7 @@ public class CustomDTileMap {
 					map_data[r.left+x,r.top+y] = (int) tileType.Objects;
 				}
 				else if((x == 5 || x == 7) && y == 6){
+					GameObject enemy = createEnemy(r.left + x, r.top+y);
 					map_data[r.left+x,r.top+y] = (int) tileType.Monster_Spawn;
 				}
 				else {
@@ -515,6 +526,7 @@ public class CustomDTileMap {
 				}
 				else if((x == 2 && y == 11) || (x == 5 && y == 6) ||
 					(x == 10 && y == 2) || (x == 10 && y == 10)){
+					GameObject enemy = createEnemy(r.left + x, r.top+y);
 					map_data[r.left+x,r.top+y] = (int) tileType.Monster_Spawn;
 				}
 				else if(x == 4 && (y >= 4 && y <= 8)){
@@ -554,6 +566,7 @@ public class CustomDTileMap {
 				}
 				else if((x == 2 && y == 1) || (x == 3 && y == 3) ||
 					(x == 3 && y == 6) || (x == 9 && y == 8)){
+					GameObject enemy = createEnemy(r.left + x, r.top+y);
 					map_data[r.left+x,r.top+y] = (int) tileType.Monster_Spawn;
 				}
 				else if((x == 4 && (y == 1 || y == 3)) || 
@@ -594,6 +607,7 @@ public class CustomDTileMap {
 					map_data[r.left+x,r.top+y] = (int) tileType.Objects;
 				}
 				else if((x == 4 && y == 9) || (x == 8 && y == 5)){
+					GameObject enemy = createEnemy(r.left + x, r.top+y);
 					map_data[r.left+x,r.top+y] = (int) tileType.Monster_Spawn;
 				}
 				else if(((x != 4 && y != 9) || (x != 5 && y != 5) || (x != 6 & y != 7)) && 
@@ -631,6 +645,7 @@ public class CustomDTileMap {
 					GameObject wall = createWall(r.left + x, r.top+y);
 				}
 				else if((x == 5 && y == 5) || (x == 7 && y == 7)){
+					GameObject enemy = createEnemy(r.left + x, r.top+y);
 					map_data[r.left+x,r.top+y] = (int) tileType.Monster_Spawn;
 				}
 				else if (x >=5 && x <= 6 && y >= 2 && y <= 3){
@@ -670,6 +685,7 @@ public class CustomDTileMap {
 					map_data[r.left+x,r.top+y] = (int) tileType.Objects;
 				}
 				else if((x == 5 && y == 5) || (x == 7 && y == 7) || (x ==11 && y == 1)){
+					GameObject enemy = createEnemy(r.left + x, r.top+y);
 					map_data[r.left+x,r.top+y] = (int) tileType.Monster_Spawn;
 				}
 				else if ((x >=1 && x <= 2 && y >= 1 && y <= 3) ||
@@ -709,6 +725,7 @@ public class CustomDTileMap {
 					map_data[r.left+x,r.top+y] = (int) tileType.Objects;
 				}
 				else if(x == 7 && y == 6){
+					GameObject enemy = createEnemy(r.left + x, r.top+y);
 					map_data[r.left+x,r.top+y] = (int) tileType.Monster_Spawn;
 				}
 				else if ((x == 4 && y == 4) || (x>= 5 && x <=7 && y == 7)){
@@ -753,6 +770,7 @@ public class CustomDTileMap {
 					map_data[r.left+x,r.top+y] = (int) tileType.Objects;
 				}
 				else if(x == 8 && y == 4){
+					GameObject enemy = createEnemy(r.left + x, r.top+y);
 					map_data[r.left+x,r.top+y] = (int) tileType.Monster_Spawn;
 				}
 				else if ((x == 5 && y == 4) || (x ==9 && y == 6)){
@@ -789,6 +807,7 @@ public class CustomDTileMap {
 					map_data[r.left+x,r.top+y] = (int) tileType.Objects;
 				}
 				else if(x == 1 && y == 9 || x == 10 && y == 10 || x == 11 && y == 3){
+					GameObject enemy = createEnemy(r.left + x, r.top+y);
 					map_data[r.left+x,r.top+y] = (int) tileType.Monster_Spawn;
 				}
 				else if (((y == 1 || y == 3 || y == 10) && x >= 1 && x <= 3) ||
@@ -813,6 +832,44 @@ public class CustomDTileMap {
 			Quaternion.identity);
 		wall.transform.parent = wallsMGR;
 		return wall;
+	}
+
+	GameObject createEnemy(int x,int y){
+		float value = Random.value;
+
+		if(value >= 0f && value < .33f){
+			return createCrow(x,y);
+		}
+		else if(value >= .33f && value < .66f){
+			return createGrozzle(x,y);
+		}
+		else{
+			return createCrawler(x,y);
+		}
+	}
+
+	GameObject createCrow(int x, int y){
+		GameObject crow = (GameObject) GameObject.Instantiate(crowGB, 
+			new Vector3((x * tileSize) + (tileSize/2),0,(y* tileSize) + -(size_z * tileSize)+ (tileSize/2)),
+			Quaternion.identity);
+		crow.transform.parent = enemiesMGR;
+		return crow;
+	}
+
+	GameObject createGrozzle(int x, int y){
+		GameObject grozzle = (GameObject) GameObject.Instantiate(grozzleGB, 
+			new Vector3((x * tileSize) + (tileSize/2),0,(y* tileSize) + -(size_z * tileSize)+ (tileSize/2)),
+			Quaternion.identity);
+		grozzle.transform.parent = enemiesMGR;
+		return grozzle;
+	}
+
+	GameObject createCrawler(int x, int y){
+		GameObject crawler = (GameObject) GameObject.Instantiate(crawlerGB, 
+			new Vector3((x * tileSize) + (tileSize/2),0,(y* tileSize) + -(size_z * tileSize)+ (tileSize/2)),
+			Quaternion.identity);
+		crawler.transform.parent = enemiesMGR;
+		return crawler;
 	}
 
 	bool addWallColliders(DRoom r, int x, int y){
