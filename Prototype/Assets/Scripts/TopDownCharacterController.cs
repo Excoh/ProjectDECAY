@@ -20,6 +20,8 @@ public class TopDownCharacterController : MonoBehaviour {
 	//
 	bool hurt;
 	static float lifeRemaining;
+	public static float maxLife = 10f;
+
 	float hurtStateTime;
 	float hurtStateTimeRemaining;
 	MeshRenderer MRtoMessWith;
@@ -37,7 +39,7 @@ public class TopDownCharacterController : MonoBehaviour {
 	//Get Hit Vars Below:
 	//
 		hurt = false;
-		lifeRemaining = 5f;
+		lifeRemaining = maxLife;
 		hurtStateTime = 2;
 		inDamageRatio = 1f;
 		hurtStateTimeRemaining = hurtStateTime;
@@ -170,15 +172,19 @@ public class TopDownCharacterController : MonoBehaviour {
 				Debug.Log("YOU DIED");
 				Destroy(this.gameObject);
 			}
+			healthGUIScript.setHearts((int)lifeRemaining);
 		startHurtState();
 		}
 	}
 
 	const float mEnemcyGenericInDamage = 1.0f;
-	const float mEnemcyCrowInDamage = 0.5f;
-	const float mEnemcyGrozzleInDamage = 1.5f;
-	const float mEnemcyCarnivoreInDamage = 1.0f;
-	const float mEnemcyNoxiousCrawlerInDamage = 1.0f;
+	const float mEnemcyGrozzleInDamage = 3.0f;
+	const float mEnemcyCrowInDamage = 1.0f;
+	const float mEnemcyCarnivoreInDamage = 2.0f;
+	const float mEnemcyNoxiousCrawlerInDamage = 2.0f;
+
+
+
 
 	float effectiveDamageTabulation(Collider collider){
 		float retVal = 0;
