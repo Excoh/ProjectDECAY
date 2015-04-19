@@ -9,6 +9,7 @@ public class ObjectManager : MonoBehaviour {
 	public GameObject crawler;
 	public GameObject walls;
 	public GameObject enemies;
+	public GameObject hazard;
 
 	// Use this for initialization
 	void Start () {
@@ -42,6 +43,10 @@ public class ObjectManager : MonoBehaviour {
 
 	public GameObject createEnemies(){
 		return enemies;
+	}
+
+	public GameObject createHazard(){
+		return hazard;
 	}
 	
 }

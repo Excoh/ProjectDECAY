@@ -47,6 +47,7 @@ public class CustomDTileMap {
 	GameObject crowGB;
 	GameObject grozzleGB;
 	GameObject crawlerGB;
+	GameObject hazardGB;
 	Transform wallsMGR;
 	Transform enemiesMGR;
 	float tileSize;
@@ -145,6 +146,8 @@ public class CustomDTileMap {
 		crowGB = GameObject.Find("ObjectManager").GetComponent<ObjectManager>().createCrow();
 		grozzleGB = GameObject.Find("ObjectManager").GetComponent<ObjectManager>().createGrozzle();
 		crawlerGB = GameObject.Find("ObjectManager").GetComponent<ObjectManager>().createCrawler();
+		hazardGB = GameObject.Find("ObjectManager").GetComponent<ObjectManager>().createHazard();
+
 		tileSize = GameObject.Find("TileMap").GetComponent<TileMap>().tileSize;
 		size_z = GameObject.Find("TileMap").GetComponent<TileMap>().size_z;
 		wallsMGR = GameObject.Find("Walls").transform;
@@ -379,7 +382,8 @@ public class CustomDTileMap {
 					map_data[r.left+x,r.top+y] = (int) tileType.Objects;
 				}
 				else if((x >= 5 && x <= 7) && y == 4){
-					map_data[r.left+x,r.top+y] = (int) tileType.Environmental_Hazards;
+					GameObject hazard = createHazard(r.left + x, r.top+y);
+					map_data[r.left+x,r.top+y] = (int) tileType.Floor;
 				}
 				else {
 					map_data[r.left+x,r.top+y] = (int) tileType.Floor;
@@ -413,7 +417,8 @@ public class CustomDTileMap {
 				}
 				else if(x >= 2 && x <=10 && y == 2||
 					x >= 2 && x <=10 && y == 10){
-					map_data[r.left+x,r.top+y] = (int) tileType.Environmental_Hazards;
+					GameObject hazard = createHazard(r.left + x, r.top+y);
+					map_data[r.left+x,r.top+y] = (int) tileType.Floor;
 				}
 				else if(x == 6 && (y == 4 || y == 7)){
 					GameObject enemy = createEnemy(r.left + x, r.top+y);
@@ -453,7 +458,8 @@ public class CustomDTileMap {
 				}
 				else if (((x == 9 || x == 10) && y == 2) || 
 					((x == 10 || x == 11) && y == 1)){
-					map_data[r.left+x,r.top+y] = (int) tileType.Environmental_Hazards;
+					GameObject hazard = createHazard(r.left + x, r.top+y);
+					map_data[r.left+x,r.top+y] = (int) tileType.Floor;
 				}
 				else if((x == 2 && y == 1)||(x == 2 && y == 9)||(x == 5 && y ==9)){
 					GameObject enemy = createEnemy(r.left + x, r.top+y);
@@ -530,7 +536,8 @@ public class CustomDTileMap {
 					map_data[r.left+x,r.top+y] = (int) tileType.Monster_Spawn;
 				}
 				else if(x == 4 && (y >= 4 && y <= 8)){
-					map_data[r.left+x,r.top+y] = (int) tileType.Environmental_Hazards;
+					GameObject hazard = createHazard(r.left + x, r.top+y);
+					map_data[r.left+x,r.top+y] = (int) tileType.Floor;
 				}
 				else {
 					map_data[r.left+x,r.top+y] = (int) tileType.Floor;
@@ -572,7 +579,8 @@ public class CustomDTileMap {
 				else if((x == 4 && (y == 1 || y == 3)) || 
 					(x >= 5 && x <=7 && (y == 9 || y == 6)) ||
 					(x == 5 && y == 7) || (x == 7 && y == 7)){
-					map_data[r.left+x,r.top+y] = (int) tileType.Environmental_Hazards;
+					GameObject hazard = createHazard(r.left + x, r.top+y);
+					map_data[r.left+x,r.top+y] = (int) tileType.Floor;
 				}
 				else {
 					map_data[r.left+x,r.top+y] = (int) tileType.Floor;
@@ -613,7 +621,8 @@ public class CustomDTileMap {
 				else if(((x != 4 && y != 9) || (x != 5 && y != 5) || (x != 6 & y != 7)) && 
 					(x >= 4 && x <=8 && y >=5 && y <= 9) || 
 					(x>=1 && x<=3 && y>=1 && y<=3) || (x >=10 && x <= 11 && y>= 10 && y<=11)){
-					map_data[r.left+x,r.top+y] = (int) tileType.Environmental_Hazards;
+					GameObject hazard = createHazard(r.left + x, r.top+y);
+					map_data[r.left+x,r.top+y] = (int) tileType.Floor;
 				}
 				else {
 					map_data[r.left+x,r.top+y] = (int) tileType.Floor;
@@ -649,7 +658,8 @@ public class CustomDTileMap {
 					map_data[r.left+x,r.top+y] = (int) tileType.Monster_Spawn;
 				}
 				else if (x >=5 && x <= 6 && y >= 2 && y <= 3){
-					map_data[r.left+x,r.top+y] = (int) tileType.Environmental_Hazards;
+					GameObject hazard = createHazard(r.left + x, r.top+y);
+					map_data[r.left+x,r.top+y] = (int) tileType.Floor;
 				}
 				else {
 					map_data[r.left+x,r.top+y] = (int) tileType.Floor;
@@ -691,7 +701,8 @@ public class CustomDTileMap {
 				else if ((x >=1 && x <= 2 && y >= 1 && y <= 3) ||
 					(x >=10 && x <= 11 && y >= 9 && y <= 11) ||
 					((x == 5 || x == 6) && y == 3) || ((x == 6 || x == 7) && y == 9) ){
-					map_data[r.left+x,r.top+y] = (int) tileType.Environmental_Hazards;
+					GameObject hazard = createHazard(r.left + x, r.top+y);
+					map_data[r.left+x,r.top+y] = (int) tileType.Floor;
 				}
 				else {
 					map_data[r.left+x,r.top+y] = (int) tileType.Floor;
@@ -729,7 +740,8 @@ public class CustomDTileMap {
 					map_data[r.left+x,r.top+y] = (int) tileType.Monster_Spawn;
 				}
 				else if ((x == 4 && y == 4) || (x>= 5 && x <=7 && y == 7)){
-					map_data[r.left+x,r.top+y] = (int) tileType.Environmental_Hazards;
+					GameObject hazard = createHazard(r.left + x, r.top+y);
+					map_data[r.left+x,r.top+y] = (int) tileType.Floor;
 				}
 				else {
 					map_data[r.left+x,r.top+y] = (int) tileType.Floor;
@@ -774,7 +786,8 @@ public class CustomDTileMap {
 					map_data[r.left+x,r.top+y] = (int) tileType.Monster_Spawn;
 				}
 				else if ((x == 5 && y == 4) || (x ==9 && y == 6)){
-					map_data[r.left+x,r.top+y] = (int) tileType.Environmental_Hazards;
+					GameObject hazard = createHazard(r.left + x, r.top+y);
+					map_data[r.left+x,r.top+y] = (int) tileType.Floor;
 				}
 				else {
 					map_data[r.left+x,r.top+y] = (int) tileType.Floor;
@@ -815,7 +828,8 @@ public class CustomDTileMap {
 					(x == 1 && y == 2) || (x == 2 && y == 9) || (x == 6 && (y == 5 || y == 7)) ||
 					(x == 9 && y == 10) || (y == 9 && (x == 9 || x == 10)) || 
 					(y == 1 && (x == 10 || x == 11)) || (x == 10 && y == 3)){
-					map_data[r.left+x,r.top+y] = (int) tileType.Environmental_Hazards;
+					GameObject hazard = createHazard(r.left + x, r.top+y);
+					map_data[r.left+x,r.top+y] = (int) tileType.Floor;
 				}
 				else {
 					map_data[r.left+x,r.top+y] = (int) tileType.Floor;
@@ -854,6 +868,14 @@ public class CustomDTileMap {
 			Quaternion.identity);
 		crow.transform.parent = enemiesMGR;
 		return crow;
+	}
+
+	GameObject createHazard(int x, int y){
+		GameObject hazard = (GameObject) GameObject.Instantiate(hazardGB, 
+			new Vector3((x * tileSize) + (tileSize/2),0,(y* tileSize) + -(size_z * tileSize)+ (tileSize/2)),
+			Quaternion.identity);
+		hazard.transform.parent = enemiesMGR;
+		return hazard;
 	}
 
 	GameObject createGrozzle(int x, int y){
