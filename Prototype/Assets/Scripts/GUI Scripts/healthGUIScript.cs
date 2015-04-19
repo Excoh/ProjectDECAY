@@ -52,12 +52,14 @@ public class healthGUIScript : MonoBehaviour {
 	void Update () {
 		//---------------------------------------------------------------------------------------------
 		//This stuff is just for the debuggin/demonstration, it should be deleted before implementation
+		/*
 		if(Input.GetKeyDown (KeyCode.J)){
 			modifyHearts (-1);
 		}
 		if(Input.GetKeyDown (KeyCode.K)){
 			modifyHearts (1);
 		}
+		*/
 		//---------------------------------------------------------------------------------------------
 	}
 

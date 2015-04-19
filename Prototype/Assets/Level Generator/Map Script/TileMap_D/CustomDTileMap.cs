@@ -874,7 +874,7 @@ public class CustomDTileMap {
 		GameObject hazard = (GameObject) GameObject.Instantiate(hazardGB, 
 			new Vector3((x * tileSize) + (tileSize/2),0,(y* tileSize) + -(size_z * tileSize)+ (tileSize/2)),
 			Quaternion.identity);
-		hazard.transform.parent = enemiesMGR;
+		hazard.transform.parent = wallsMGR;
 		return hazard;
 	}
 

@@ -31,7 +31,7 @@ public class TopDownCharacterController : MonoBehaviour {
 	void Start () {
 		mSpeedBonus = 1;
 		mPlayerRotation= 0;
-		mBaseSpeed = 20;
+		mBaseSpeed = 60;
 		unitVelo = Vector2.zero;
 		currentWeapon = WeaponModes.sword;
 		MRtoMessWith = this.gameObject.GetComponent<MeshRenderer>();

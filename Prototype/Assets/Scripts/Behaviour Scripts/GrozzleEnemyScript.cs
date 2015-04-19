@@ -15,7 +15,7 @@ public class GrozzleEnemyScript : MonoBehaviour
 
 	const float moveSpeedMulti = 1.001f;
 	float agroRange = 100;
-	float attackRange = 10;
+	float attackRange = 30;
 	float knockback = -500;
 
 	private Transform grozzleTransform;
