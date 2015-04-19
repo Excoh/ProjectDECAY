@@ -7,6 +7,8 @@ public class ObjectManager : MonoBehaviour {
 	public GameObject crow;
 	public GameObject grozzle;
 	public GameObject crawler;
+	public GameObject walls;
+	public GameObject enemies;
 
 	// Use this for initialization
 	void Start () {
@@ -32,6 +34,14 @@ public class ObjectManager : MonoBehaviour {
 
 	public GameObject createCrawler(){
 		return crawler;
+	}
+
+	public GameObject createWalls(){
+		return walls;
+	}
+
+	public GameObject createEnemies(){
+		return enemies;
 	}
 	
 }
