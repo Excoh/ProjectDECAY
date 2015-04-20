@@ -26,9 +26,11 @@ public class TopDownCharacterController : MonoBehaviour {
 	float hurtStateTimeRemaining;
 	MeshRenderer MRtoMessWith;
 	static float inDamageRatio;
+	bool youHaveDied;
 
 	// Use this for initialization
 	void Start () {
+		youHaveDied = false;
 		mSpeedBonus = 1;
 		mPlayerRotation= 0;
 		mBaseSpeed = 60;
@@ -50,9 +52,11 @@ public class TopDownCharacterController : MonoBehaviour {
 		if(hurt){
 			countdownHurtTime();
 		}
-		Control();
-		Move();
-		Weapons();
+		if(!youHaveDied){
+			Control();
+			Move();
+			Weapons();
+		}
 	}
 
 
@@ -170,12 +174,38 @@ public class TopDownCharacterController : MonoBehaviour {
 			lifeRemaining-= damageDealt;
 			if(lifeRemaining<=0){
 				Debug.Log("YOU DIED");
-				Destroy(this.gameObject);
+				handleDeath();
+				//Destroy(this.gameObject);
 			}
 			healthGUIScript.setHearts((int)lifeRemaining);
 		startHurtState();
 		}
 	}
+
+
+	void handleDeath(){
+		youHaveDied = true;
+		//Application.LoadLevel("Menu");
+	}
+
+
+void OnGUI(){
+	if (youHaveDied){
+		GUI.Window(0, new Rect((Screen.width/2)-150, (Screen.height/2)-75, 300, 250), ShowGUI, "GAME OVER");
+	}
+}
+ 
+void ShowGUI(int windowID){
+    GUI.Label(new Rect(65, 40, 200, 100), "YOU HAVE DIED, PRESS THE BUTTON BELOW TO RETURN TO MAIN MENU");
+	if (GUI.Button(new Rect(125, 150, 100, 30), "MAIN MENU")){
+		Application.LoadLevel("Menu");
+	}
+}
+
+
+
+
+
 
 	const float mEnemcyGenericInDamage = 1.0f;
 	const float mEnemcyGrozzleInDamage = 3.0f;
