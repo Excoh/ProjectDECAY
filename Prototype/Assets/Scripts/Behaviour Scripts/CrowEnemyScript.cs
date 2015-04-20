@@ -42,8 +42,8 @@ public class CrowEnemyScript : MonoBehaviour {
 
 	Vector3 attackPoint = Vector3.zero;
 
-	float aggroHorizon = 70;
-	float attackHorizon = 30;
+	float aggroHorizon = 140;
+	float attackHorizon = 60;
 	float distBetween = 500;
 
 	float attackRefractoryPeriod = 1;
@@ -51,7 +51,7 @@ public class CrowEnemyScript : MonoBehaviour {
 
 	void pursue(){
 		if(playerObject!=null){
-			transform.position = Vector3.MoveTowards(transform.position, playerObject.transform.position, 10 * Time.deltaTime);
+			transform.position = Vector3.MoveTowards(transform.position, playerObject.transform.position, 15 * Time.deltaTime);
 		// check attack horizon vs distance see if you can attack, if so set the attack point
 			timeSinceLastAttack+=Time.deltaTime;
 			if ( attackHorizon > distBetween && timeSinceLastAttack>attackRefractoryPeriod){ //check if its close enough and if its too soon
@@ -81,7 +81,7 @@ public class CrowEnemyScript : MonoBehaviour {
 			currentState = eBehaviourState.pursue;
 			reportStateChange();
 		}else{
-			transform.position = Vector3.MoveTowards(transform.position, attackPoint, 40 * Time.deltaTime);
+			transform.position = Vector3.MoveTowards(transform.position, attackPoint, 60 * Time.deltaTime);
 		}
 	}
 

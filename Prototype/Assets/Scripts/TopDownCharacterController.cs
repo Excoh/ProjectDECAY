@@ -112,7 +112,7 @@ public class TopDownCharacterController : MonoBehaviour {
 		if(currentSword!=null) Destroy(currentSword);
 		currentSword = Instantiate(swordPrefab, gameObject.transform.position, gameObject.transform.rotation) as GameObject;
 		currentSword.transform.parent = gameObject.transform;
-		currentSword.transform.localPosition += new Vector3(2,0.5f,0);
+		currentSword.transform.localPosition += new Vector3(2,-0.5f,0);
 	}
 
 
@@ -169,7 +169,7 @@ public class TopDownCharacterController : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider collider) {
-		if(!hurt && (collider.gameObject.tag =="enemy" || collider.gameObject.tag =="enemyCrow" || collider.gameObject.tag == "enemyGrozzle" || collider.gameObject.tag == "carnivore"||collider.gameObject.tag == "enemyNoxiousCrawler")){
+		if(!hurt && (collider.gameObject.tag =="enemy" || collider.gameObject.tag =="enemyCrow" || collider.gameObject.tag == "enemyGrozzle" || collider.gameObject.tag == "carnivore"||collider.gameObject.tag == "enemyNoxiousCrawler"||collider.gameObject.tag == "HAZARD")){
 			float damageDealt = effectiveDamageTabulation(collider);
 			lifeRemaining-= damageDealt;
 			if(lifeRemaining<=0){
@@ -212,6 +212,7 @@ void ShowGUI(int windowID){
 	const float mEnemcyCrowInDamage = 1.0f;
 	const float mEnemcyCarnivoreInDamage = 2.0f;
 	const float mEnemcyNoxiousCrawlerInDamage = 2.0f;
+	const float mHazardDamage = 1.0f;
 
 
 
@@ -226,6 +227,9 @@ void ShowGUI(int windowID){
 			retVal=mEnemcyNoxiousCrawlerInDamage;
 			collider.gameObject.GetComponent<NoxiousCrawlerEnemyScript>().reproduce();
 			Destroy(collider.gameObject);
+		}
+		if(collider.gameObject.tag == "HAZARD"){
+			retVal=mHazardDamage;
 		}
 		return retVal * inDamageRatio;
 	}

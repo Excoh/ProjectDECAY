@@ -36,7 +36,7 @@ public class NoxiousCrawlerEnemyScript : MonoBehaviour {
 
 	void pursue(){
 		if(playerObject!=null){
-			transform.position = Vector3.MoveTowards(transform.position, playerObject.transform.position, 15 * Time.deltaTime);
+			transform.position = Vector3.MoveTowards(transform.position, playerObject.transform.position, 45 * Time.deltaTime);
 		}
 	}
 
