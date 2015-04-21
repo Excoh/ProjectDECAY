@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PlayerAnim : MonoBehaviour {
 
+	public GameObject character;
 	private Animator anim;
 
 	// Use this for initialization
@@ -13,19 +14,20 @@ public class PlayerAnim : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		float inputX = Input.GetAxis("Horizontal");
-		float inputY = Input.GetAxis("Vertical");
+		float inputZ = Input.GetAxis("Vertical");
 		anim.SetFloat("SpeedX", inputX);
-		anim.SetFloat("SpeedY", inputY);
+		anim.SetFloat("SpeedZ", inputZ);
 
 	}
 
 	void FixedUpdate(){
 		float lastInputX = Input.GetAxis("Horizontal");
-		float lastInputY = Input.GetAxis("Vertical");
-		if(lastInputX != 0 || lastInputY != 0){
+		float lastInputZ = Input.GetAxis("Vertical");
+		if(lastInputX != 0 || lastInputZ != 0){
 			anim.SetBool("walking", true);
 		}
 		else{
+			character.transform.rotation = Quaternion.Euler(0,0,0);
 			anim.SetBool("walking", false);
 		}
 	}

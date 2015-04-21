@@ -3,6 +3,8 @@ using System.Collections;
 
 public class TopDownCharacterController : MonoBehaviour {
 
+	public GameObject character;
+
 	float mPlayerRotation;
 	static float mBaseSpeed;
 	static float mSpeedBonus;
@@ -24,7 +26,8 @@ public class TopDownCharacterController : MonoBehaviour {
 
 	float hurtStateTime;
 	float hurtStateTimeRemaining;
-	MeshRenderer MRtoMessWith;
+	//MeshRenderer MRtoMessWith;
+	public SpriteRenderer MRtoMessWith;
 	static float inDamageRatio;
 	bool youHaveDied;
 
@@ -36,7 +39,7 @@ public class TopDownCharacterController : MonoBehaviour {
 		mBaseSpeed = 60;
 		unitVelo = Vector2.zero;
 		currentWeapon = WeaponModes.sword;
-		MRtoMessWith = this.gameObject.GetComponent<MeshRenderer>();
+		//MRtoMessWith = this.gameObject.GetComponent<MeshRenderer>();
 	//
 	//Get Hit Vars Below:
 	//
@@ -63,7 +66,7 @@ public class TopDownCharacterController : MonoBehaviour {
 
 	void Control(){
 		unitVelo = Vector2.zero;
-		if (Input.GetKey(KeyCode.W)){
+		/*if (Input.GetKey(KeyCode.W)){
 			unitVelo.y+=1;
 		}
 		if (Input.GetKey(KeyCode.A)){
@@ -76,6 +79,24 @@ public class TopDownCharacterController : MonoBehaviour {
 			unitVelo.x+=1;
 		}
 		unitVelo.Normalize();
+		*/
+		if (Input.GetKey(KeyCode.UpArrow)){
+			unitVelo.y+=1;
+		}
+		if (Input.GetKey(KeyCode.LeftArrow)){
+			unitVelo.x-=1;
+		}
+		if (Input.GetKey(KeyCode.DownArrow)){
+			unitVelo.y-=1;
+		}
+		if (Input.GetKey(KeyCode.RightArrow)){
+			unitVelo.x+=1;
+		}
+		unitVelo.Normalize();
+		/*float x = Input.GetAxis("Horizontal") * mBaseSpeed * Time.deltaTime;
+		float z = Input.GetAxis("Vertical")* mBaseSpeed * Time.deltaTime;
+		character.transform.Translate(x,0,z);
+		*/
 	}
 
 	void Move(){
@@ -246,6 +267,7 @@ void ShowGUI(int windowID){
     		 hurt = false;
     		 Debug.Log("IT IS NO LONGER HURT");
     		 MRtoMessWith.enabled = true;
+    		 //MRtoMessWith.enabled = false;
     	}
     }
 }
